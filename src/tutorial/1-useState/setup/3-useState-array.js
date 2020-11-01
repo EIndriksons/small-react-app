@@ -8,8 +8,14 @@ const UseStateArray = () => {
 
   const removeItem = (id) => {
     // filter creates a new array with all elements that pass the test
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
+    // let newPeople = people.filter((person) => person.id !== id);
+    // setPeople(newPeople);
+
+    // * Functional example:
+    setPeople((prevPeople) => {
+      let newPeople = prevPeople.filter((person) => person.id !== id);
+      return newPeople;
+    });
   };
 
   return (
