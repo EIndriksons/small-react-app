@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ErrorExample = () => {
-  // Not gonna work because it does not trigger re-rendering
+  // ! not gonna work because it does not trigger re-rendering
   let title = 'random title';
   const handleClick = () => {
     title = 'hello people';

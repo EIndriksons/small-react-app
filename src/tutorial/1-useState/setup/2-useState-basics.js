@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 const UseStateBasics = () => {
-  // IMPORTANT: To use useState or any other 'use' function
-  // the function must be named with first capital letter
+  // ! To use useState or any other 'use' function the function must be Capitalized
 
   // useState() is a function
   // it returns an array of two values
