@@ -8,11 +8,15 @@ const MultipleReturns = () => {
   const [user, setUser] = useState('default user');
 
   useEffect(() => {
+    // * you can also set setIsLoading(true) here
+    // * in case you're fetching data for example
     fetch(url)
       .then((response) => {
         if (response.status >= 200 && response.status <= 299) {
           return response.json();
         } else {
+          // * fetch() does not .catch() response.status errors
+          // * you have to handle them yourself
           setIsLoading(false);
           setIsError(true);
           throw new Error(response.statusText);
