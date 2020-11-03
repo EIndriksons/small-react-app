@@ -5,6 +5,9 @@ import { useFetch } from '../../9-custom-hooks/final/2-useFetch';
 // ! it is often unecessary to add optimizations to already existing app's
 // ! this is because optimizations themselves take up resources
 
+// * 1) wrap elements in React.memo(). It is checking and memorizing the value
+// * if prop value did not change it will not trigger re-rendering
+
 const url = 'https://course-api.netlify.app/api/javascript-store-products';
 
 // every time props or state changes, component re-renders
@@ -26,10 +29,17 @@ const Index = () => {
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState(0);
 
+  // * 2) addToCart function is also a prop
+  // * each time something gets added to the cart it causes re-render for the whole list
+  // * for this we useCallback() which creates this function ONLY when we update [cart] value
   const addToCart = useCallback(() => {
     setCart(cart + 1);
   }, [cart]);
 
+  // * 3) every time Im updating state value Im re-calculating this
+  // * and if this function takes a lot of computing power than can be pretty draining
+  // * therefore, we can useMemo() to set a dependancy on products
+  // * if products don't change - this variable won't be updated
   const mostExpensive = useMemo(() => calculateMostExpensive(products), [products]);
 
   return (
