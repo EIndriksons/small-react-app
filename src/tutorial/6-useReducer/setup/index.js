@@ -3,43 +3,11 @@ import Modal from './Modal';
 import { data } from '../../../data';
 // reducer function
 
+import { reducer } from './reducer';
+
 // * reducer is similar to Redux
 // * its a single central place to put global app state
 // * and dispatch changes to state from various parts of the app
-
-const reducer = (state, action) => {
-  if (action.type === 'ADD_ITEM') {
-    const newPeople = [...state.people, action.payload];
-    return {
-      ...state,
-      people: newPeople,
-      isModalOpen: true,
-      modalContent: 'Item Added',
-    };
-  }
-  if (action.type === 'NO_VALUE') {
-    return {
-      ...state,
-      isModalOpen: true,
-      modalContent: 'Please Enter Value',
-    };
-  }
-  if (action.type === 'CLOSE_MODAL') {
-    return {
-      ...state,
-      isModalOpen: false,
-    };
-  }
-  if (action.type === 'REMOVE_ITEM') {
-    const newPeople = state.people.filter((person) => person.id !== action.payload);
-    return {
-      ...state,
-      people: newPeople,
-    };
-  }
-
-  return state;
-};
 
 const defaultState = {
   people: [],
